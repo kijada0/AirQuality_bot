@@ -71,7 +71,7 @@ def get_data():
     for l in range(len(sensor)):
         url = 'https://api.gios.gov.pl/pjp-api/rest/data/getData/' + str(sensor[l])
         aq = requests.get(url)
-        print(sensor[l])
+        #print(sensor[l])
         #print(weather_data[0] + ' ' + weather_data[1])
         for i in range(len(json.loads(aq.text)['values'])):
             #print(json.loads(aq.text)['values'][i]['date'])
