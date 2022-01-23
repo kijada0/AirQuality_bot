@@ -6,7 +6,7 @@ import csv
 fpath = "" # for wid10 + pycharm
 
 #   CONFIG  #
-with open(fpath+"config", 'r') as fconfig:
+with open(fpath + "config.txt", 'r') as fconfig:
     config = []
     while True:
         line = fconfig.readline()

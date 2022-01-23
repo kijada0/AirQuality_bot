@@ -1,0 +1,4 @@
+id_stacji	stacja	data_pomiaru	godzina_pomiaru	temperatura	predkosc_wiatru	kierunek_wiatru	wilgotnosc_wzgledna	suma_opadu	cisnienie	SO2	PM10	C6H6	CO	NO2	O3	PM2.5	PM10	PM2.5	
+12330	Poznañ	2022-01-23	22	1.1	0	0	100.0	0	1034.6	10.036	103.748	0.51188	897.67	34.3023	None	76.0786	101.284	98.2344	
+12330	Poznañ	2022-01-23	22	1.1	0	0	100.0	0	1034.6	10.036	103.748	0.51188	897.67	34.3023	None	76.0786	101.284	98.2344	
+12330	PoznaÅ„	2022-01-23	22	1.1	0	0	100.0	0	1034.6	10.036	103.748	0.51188	897.67	34.3023	None	76.0786	101.284	98.2344	
