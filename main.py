@@ -2,94 +2,83 @@ import requests
 import json
 import csv
 
-print("start")
-#------------------------------------------------------------------------------------------
-#   SENSORS ID LIST
-#------------------------------------------------------------------------------------------
-aq_sensor = requests.get('https://api.gios.gov.pl/pjp-api/rest/station/sensors/530')
-sensor = []
-for s in range(len(json.loads(aq_sensor.text))):
-    sensor.append(json.loads(aq_sensor.text)[s]['id'])
+#fpath = "/home/kijada/studia/os/" # for ubuntu
+fpath = "" # for wid10 + pycharm
+
+#   CONFIG  #
+with open(fpath+"config", 'r') as fconfig:
+    config = []
+    while True:
+        line = fconfig.readline()
+        if line == "": break
+        else:
+            config.append(line.split('\t'))
+#print('read config: ', config)
+
+#   STATION #
+for i in range(len(config)):
+    if len(config[i]) > 5:
+        config[i].pop(len(config[i])-1)
+        g = False
+        break
+    else: g = True
+    config[i].pop(len(config[i])-1)
+    for j in range(1, len(config[i])):
+        if int(config[i][j]) < 1000:
+            aq_sensor = requests.get('https://api.gios.gov.pl/pjp-api/rest/station/sensors/' + config[i][j])
+            config[i].append(len(json.loads(aq_sensor.text)))
+            for s in range(len(json.loads(aq_sensor.text))):
+                config[i].append(int(json.loads(aq_sensor.text)[s]['id']))
+if g:
+    with open(fpath+"config", 'w') as fconfig:
+        for i in range(len(config)):
+            for j in range(len(config[i])):
+                fconfig.write(str(config[i][j]) + '\t')
+            fconfig.write('-1\n')
+    print('overwrite')
+
+print('config', config)
+
+# GET DATA  #
+# WEATHER #
+data = []
+for i in range(len(config)):
+    print('station:', i+1)
 
 
-def sensors_get():
-    aq_sensor = requests.get('https://api.gios.gov.pl/pjp-api/rest/station/sensors/530')
-    sensor_new = []
-    for s in range(len(json.loads(aq_sensor.text))):
-        sensor_new.append(json.loads(aq_sensor.text)[s]['id'])
+    #   WEATHER   #
+    weather = requests.get("https://danepubliczne.imgw.pl/api/data/synop/id/" + config[i][0])
+    raw = json.loads(weather.text)
+    key = list(raw.keys())
+    data.clear()
+    for j in range(len(raw)):
+        value = ['', '']
+        value[0] = key[j]
+        value[1] = raw[key[j]]
+        data.append(value)
 
-    name = 'sensors.txt'
-    with open(name, 'a') as f:
-        for a in range(len(sensor_new)):
-            f.write(str(sensor_new[a]) + '\n')
-    print('sensors list: ', sensor_new)
 
-def sensors_load():
+    #   AIR QUALITY #
+    stations = []
+    for j in range(1, len(config[i])):
+        if int(config[i][j]) > 100: stations.append(config[i][j])
+        else: break
+    #print(stations)
+
     sensor = []
-    name = 'sensors.txt'
-    with open(name, 'r') as f:
-        a = 0
-        while True:
-            f.read(sensor[a])
-            a+=1
-            break
-    print(sensor)
-
-def sensors_check():
-    try:
-        fs = open("sensors.txt")
-        sensors_load()
-        print("sensors load")
-        fs.close()
-    except IOError:
-        sensors_get()
-        print("sensors get")
-        sensors_check()
-
-def get_data():
-    #------------------------------------------------------------------------------------------
-    #   WEATHER
-    #------------------------------------------------------------------------------------------
-    weather = requests.get("https://danepubliczne.imgw.pl/api/data/synop/id/12375")
-    weather_data = []
-    data = json.loads(weather.text)
-
-    weather_data.append(data['data_pomiaru'])
-    if int(data['godzina_pomiaru']) >= 10: weather_data.append(data['godzina_pomiaru'] + ':00:00')
-    else: weather_data.append('0' + data['godzina_pomiaru'] + ':00:00')
-    weather_data.append(' ')
-    weather_data.append(data['temperatura'])
-    weather_data.append(data['predkosc_wiatru'])
-    weather_data.append(data['wilgotnosc_wzgledna'])
-    weather_data.append(data['suma_opadu'])
-    weather_data.append(data['cisnienie'])
-
-    #------------------------------------------------------------------------------------------
-    #   AIR QUALITY
-    #------------------------------------------------------------------------------------------
-    aq_data = []
-    for l in range(len(sensor)):
-        url = 'https://api.gios.gov.pl/pjp-api/rest/data/getData/' + str(sensor[l])
-        aq = requests.get(url)
-        #print(sensor[l])
-        #print(weather_data[0] + ' ' + weather_data[1])
-        for i in range(len(json.loads(aq.text)['values'])):
-            #print(json.loads(aq.text)['values'][i]['date'])
-            if json.loads(aq.text)['values'][i]['date'] == weather_data[0] + ' ' + weather_data[1]:
-                aq_data.append(json.loads(aq.text)['values'][i]['value'])
-                #print(aq_data)
-                break
-            #else: print('.')
+    for j in range(len(stations), len(config[i])):
+        sensor.clear()
+        if int(config[i][j]) < 100:
+            for l in range(j+1, j+1+int(config[i][j])): sensor.append(config[i][l])
+        for l in range(len(sensor)):
+            aq_data = ['', '']
+            aq = requests.get('https://api.gios.gov.pl/pjp-api/rest/data/getData/' + str(sensor[l]))
+            aq_data[0] = json.loads(aq.text)['key']
+            aq_data[1] = json.loads(aq.text)['values'][0]['value']
+            data.append(aq_data)
+            #print(sensor[l], aq_data)
 
 
-    #------------------------------------------------------------------------------------------
-    #   FILE
-    #------------------------------------------------------------------------------------------
-    name = 'data.csv'
-    with open(name, 'a') as f:
-        writer = csv.writer(f)
-        writer.writerow(weather_data + [' '] + aq_data)
-    print(weather_data[0] + ' ' + weather_data[1])
 
-#sensors_check()
-get_data()
+
+    print(data)
