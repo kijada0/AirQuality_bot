@@ -17,25 +17,21 @@ with open(fpath+"config", 'r') as fconfig:
 
 #   STATION #
 for i in range(len(config)):
-    if len(config[i]) > 5:
+    if len(config[i]) > 5 : config[i].pop(len(config[i]) - 1)
+    else:
         config[i].pop(len(config[i])-1)
-        g = False
-        break
-    else: g = True
-    config[i].pop(len(config[i])-1)
-    for j in range(1, len(config[i])):
-        if int(config[i][j]) < 1000:
-            aq_sensor = requests.get('https://api.gios.gov.pl/pjp-api/rest/station/sensors/' + config[i][j])
-            config[i].append(len(json.loads(aq_sensor.text)))
-            for s in range(len(json.loads(aq_sensor.text))):
-                config[i].append(int(json.loads(aq_sensor.text)[s]['id']))
-if g:
-    with open(fpath+"config", 'w') as fconfig:
-        for i in range(len(config)):
-            for j in range(len(config[i])):
-                fconfig.write(str(config[i][j]) + '\t')
-            fconfig.write('-1\n')
-    print('overwrite')
+        for j in range(1, len(config[i])):
+            if int(config[i][j]) < 1000:
+                aq_sensor = requests.get('https://api.gios.gov.pl/pjp-api/rest/station/sensors/' + config[i][j])
+                config[i].append(len(json.loads(aq_sensor.text)))
+                for s in range(len(json.loads(aq_sensor.text))):
+                    config[i].append(int(json.loads(aq_sensor.text)[s]['id']))
+        with open(fpath+"config", 'w') as fconfig:
+            for i in range(len(config)):
+                for j in range(len(config[i])):
+                    fconfig.write(str(config[i][j]) + '\t')
+                fconfig.write('-1\n')
+        print('overwrite')
 
 print('config', config)
 
@@ -57,14 +53,12 @@ for i in range(len(config)):
         value[1] = raw[key[j]]
         data.append(value)
 
-
-    #   AIR QUALITY #
+    #   AIR QUALITY     #
     stations = []
     for j in range(1, len(config[i])):
         if int(config[i][j]) > 100: stations.append(config[i][j])
         else: break
     #print(stations)
-
     sensor = []
     for j in range(len(stations), len(config[i])):
         sensor.clear()
@@ -78,7 +72,52 @@ for i in range(len(config)):
             data.append(aq_data)
             #print(sensor[l], aq_data)
 
+    #print(data)
+    #   SAVE DATA   #
+    fname = 'station' + data[0][1] + '.txt'
+    try:
+        fdata = open(fpath + fname,'r')
+        line = fdata.readline()
+        if line == '':
+            print('no head')
+            for j in range(len(data)):
+                fdata.write(data[j][0])
+                fdata.write('\t')
+            fdata.write('\n')
+        fdata.close()
 
+    except IOError:
+        with open(fpath + fname, 'w+') as fdata:
+            line = fdata.readline()
+            if line == '':
+                print('no head')
+                for j in range(len(data)):
+                    fdata.write(data[j][0])
+                    fdata.write('\t')
+                fdata.write('\n')
 
+    with open(fpath + fname, 'r+') as fdata:
+        line = fdata.readline()
+        head = []
+        head = line.split('\t')
+        head.pop(len(head)-1)
 
-    print(data)
+    with open(fpath + fname, 'a',encoding='utf-8') as fdata:
+        head0 = []
+        for j in range(len(data)):
+            head0.append(data[j][0])
+        if head == head0:
+            for j in range(len(data)):
+                fdata.write(str(data[j][1]))
+                fdata.write('\t')
+            fdata.write('\n')
+        else:
+            for j in range(len(data)):
+                fdata.write(data[j][0])
+                fdata.write('\t')
+            fdata.write('\n')
+            for j in range(len(data)):
+                fdata.write(str(data[j][1]))
+                fdata.write('\t')
+            fdata.write('\n')
+    print('done')
