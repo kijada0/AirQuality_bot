@@ -9,3 +9,14 @@ id_stacji	stacja	data_pomiaru	godzina_pomiaru	temperatura	predkosc_wiatru	kierun
 12155	Gdańsk	2022-01-24	9	2.2	4	220	95.1	0.01	1031.6	None	None	None	None	None	None	None	None	None	None	None	None	None	None	None	
 12155	Gdańsk	2022-01-24	10	2.8	4	220	95.1	0.01	1031.7	None	None	None	None	None	None	None	None	None	None	None	None	None	None	None	
 12155	Gdańsk	2022-01-24	11	3.3	4	220	95.1	0.01	1031.4	292.19800000000004	16.5737	10.6384	3.09816	401.661	11.0347	7.63815	1.79602	6.99539	321.899	None	36.1517	9.58133	9.18457	None
+12155	Gdańsk	2022-01-24	12	3.9	4	220	95.1	0.01	1030.6	None	None	None	None	None	None	None	None	None	None	None	None	None	None	None	
+12155	Gdańsk	2022-01-24	13	4.4	4	210	93.8	0.01	1030.3	None	None	None	None	None	None	None	None	None	None	None	None	None	None	None	
+12155	Gdańsk	2022-01-24	14	4.6	4	230	91.8	0.01	1030.2	None	None	None	None	None	None	None	None	None	None	None	None	None	None	None	
+12155	Gdańsk	2022-01-24	15	3.6	3	240	91.8	0.01	1030.3	338.04	29.9986	10.7374	4.24418	441.915	12.3592	6.31973	1.8812	6.15975	370.035	18.7782	37.4136	7.73865	7.52052	2.0104	
+12155	Gdańsk	2022-01-24	16	3.5	3	220	91.8	0.01	1030.2	None	None	None	None	None	None	None	None	None	None	None	None	None	None	None	
+12155	Gdańsk	2022-01-24	17	3.7	3	220	93.1	0.01	1030	None	None	None	None	None	None	None	None	None	None	None	None	None	None	None	
+12155	Gdańsk	2022-01-24	18	3.8	3	230	93.1	0.01	1029.8	None	None	None	None	None	None	None	None	None	None	None	None	None	None	None	
+12155	Gdańsk	2022-01-24	19	3.7	3	250	93.1	0.01	1029.4	None	None	None	None	None	None	None	None	None	None	None	None	None	None	None	
+12155	Gdańsk	2022-01-24	20	3.6	2	250	93.1	0.01	1028.9	None	None	None	None	None	None	None	None	None	None	None	None	None	None	None	
+12155	Gdańsk	2022-01-24	21	3.7	3	250	93.1	0.01	1028.7	None	None	None	None	None	None	None	None	None	None	None	None	None	None	None	
+12155	Gdańsk	2022-01-24	22	4	4	260	91.8	0.01	1028.1	243.555	8.55488	12.8717	4.47619	None	1.64296	8.88591	5.89029	8.58966	311.623	7.06641	66.5154	12.6777	11.7881	2.13012	
