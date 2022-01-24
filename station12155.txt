@@ -10,3 +10,4 @@ id_stacji	stacja	data_pomiaru	godzina_pomiaru	temperatura	predkosc_wiatru	kierun
 12155	Gdańsk	2022-01-24	9	2.2	4	220	95.1	0.01	1031.6	None	None	None	None	None	None	None	None	None	None	None	None	None	None	None	
 12155	Gdańsk	2022-01-24	10	2.8	4	220	95.1	0.01	1031.7	None	None	None	None	None	None	None	None	None	None	None	None	None	None	None	
 12155	Gdańsk	2022-01-24	11	3.3	4	220	95.1	0.01	1031.4	292.19800000000004	16.5737	10.6384	3.09816	401.661	11.0347	7.63815	1.79602	6.99539	321.899	None	36.1517	9.58133	9.18457	None	
+12155	Gdańsk	2022-01-24	11	3.3	4	220	95.1	0.01	1031.4	292.19800000000004	16.5737	10.6384	3.09816	401.661	11.0347	7.63815	1.79602	6.99539	321.899	None	36.1517	9.58133	9.18457	None	

@@ -2,8 +2,8 @@ import requests
 import json
 import csv
 
-#fpath = "/home/kijada/studia/os/" # for ubuntu
-fpath = "" # for wid10 + pycharm
+fpath = "/home/kijada/studia/AirQuality_bot/" # for ubuntu
+#fpath = "" # for wid10 + pycharm
 
 #   CONFIG  #
 with open(fpath + "config", 'r') as fconfig:
@@ -33,13 +33,13 @@ for i in range(len(config)):
                 fconfig.write('-1\n')
         print('overwrite')
 
-print('config', config)
+print('Config: ', config)
 
 # GET DATA  #
 # WEATHER #
 data = []
 for i in range(len(config)):
-    print('station:', i+1)
+    print('Station no:', i+1)
 
 
     #   WEATHER   #
@@ -82,10 +82,11 @@ for i in range(len(config)):
         fdata = open(fpath + fname,'r')
         line = fdata.readline()
         if line == '':
-            print('no head')
+            print('File error')
             for j in range(len(data)):
                 fdata.write(data[j][0])
                 fdata.write('\t')
+                print('New headline')
             fdata.write('\n')
         fdata.close()
 
@@ -93,10 +94,11 @@ for i in range(len(config)):
         with open(fpath + fname, 'w+') as fdata:
             line = fdata.readline()
             if line == '':
-                print('no head')
+                print('File error')
                 for j in range(len(data)):
                     fdata.write(data[j][0])
                     fdata.write('\t')
+                    print('New headline')
                 fdata.write('\n')
 
     with open(fpath + fname, 'r+') as fdata:
@@ -123,5 +125,7 @@ for i in range(len(config)):
                 fdata.write(str(data[j][1]))
                 fdata.write('\t')
             fdata.write('\n')
-    print(data)
-    print('done')
+    #print(data)
+    print('Successful reading')
+
+print('Reading complete')
