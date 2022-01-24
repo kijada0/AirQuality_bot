@@ -6,7 +6,7 @@ import csv
 fpath = "" # for wid10 + pycharm
 
 #   CONFIG  #
-with open(fpath + "config.txt", 'r') as fconfig:
+with open(fpath + "config", 'r') as fconfig:
     config = []
     while True:
         line = fconfig.readline()
@@ -66,9 +66,12 @@ for i in range(len(config)):
             for l in range(j+1, j+1+int(config[i][j])): sensor.append(config[i][l])
         for l in range(len(sensor)):
             aq_data = ['', '']
+            #print(sensor[l])
             aq = requests.get('https://api.gios.gov.pl/pjp-api/rest/data/getData/' + str(sensor[l]))
             aq_data[0] = json.loads(aq.text)['key']
-            aq_data[1] = json.loads(aq.text)['values'][0]['value']
+            #print(json.loads(aq.text)['values'])
+            if json.loads(aq.text)['values'] == []: aq_data[1] = 'error'
+            else: aq_data[1] = json.loads(aq.text)['values'][0]['value']
             data.append(aq_data)
             #print(sensor[l], aq_data)
 
@@ -120,4 +123,5 @@ for i in range(len(config)):
                 fdata.write(str(data[j][1]))
                 fdata.write('\t')
             fdata.write('\n')
+    print(data)
     print('done')
