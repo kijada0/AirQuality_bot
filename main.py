@@ -39,9 +39,7 @@ print('Config: ', config)
 # WEATHER #
 data = []
 for i in range(len(config)):
-    print('Station no:', i+1)
-
-
+    print('Station no: ', i+1)
     #   WEATHER   #
     weather = requests.get("https://danepubliczne.imgw.pl/api/data/synop/id/" + config[i][0])
     raw = json.loads(weather.text)
@@ -107,7 +105,7 @@ for i in range(len(config)):
         head = line.split('\t')
         head.pop(len(head)-1)
 
-    with open(fpath + fname, 'a',encoding='utf-8') as fdata:
+    with open(fpath + fname, 'a', encoding='utf-8') as fdata:
         head0 = []
         for j in range(len(data)):
             head0.append(data[j][0])
@@ -128,4 +126,4 @@ for i in range(len(config)):
     #print(data)
     print('Successful reading')
 
-print('Reading complete')
+print('\nReading complete\n')
