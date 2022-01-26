@@ -137,7 +137,7 @@ for i in range(len(config)):
                 fdata.write(str(data[j][1]))
                 fdata.write('\t')
             fdata.write('\n')
-    print(data)
+    #print(data)
     print('Successful reading')
 
 print('\nReading complete\n')
