@@ -54,6 +54,10 @@ for i in range(len(config)):
         value[1] = raw[key[j]]
         data.append(value)
 
+    #if int(raw['godzina_pomiaru']) >= 10: time = raw['data_pomiaru'] + ' ' + raw['godzina_pomiaru'] + ':00:00'
+    #else: time = raw['data_pomiaru'] + ' 0' + raw['godzina_pomiaru'] + ':00:00'
+    #print(time)
+
     #   AIR QUALITY     #
     stations = []
     for j in range(1, len(config[i])):
@@ -78,8 +82,8 @@ for i in range(len(config)):
                         aq_data[1] = json.loads(aq.text)['values'][k]['value']
                         break
                     else:
-                        print('No data available ', sensor[l])
-                        aq_data[1] = 'No data'
+                        print('Empty data ', sensor[l])
+                        aq_data[1] = 'empty'
             data.append(aq_data)
             #print(sensor[l], aq_data)
 
@@ -94,7 +98,7 @@ for i in range(len(config)):
             for j in range(len(data)):
                 fdata.write(data[j][0])
                 fdata.write('\t')
-                print('New headline')
+            print('New headline')
             fdata.write('\n')
         fdata.close()
 
@@ -106,7 +110,7 @@ for i in range(len(config)):
                 for j in range(len(data)):
                     fdata.write(data[j][0])
                     fdata.write('\t')
-                    print('New headline')
+                print('New headline')
                 fdata.write('\n')
 
     with open(fpath + fname, 'r+') as fdata:
