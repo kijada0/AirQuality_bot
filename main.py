@@ -2,11 +2,11 @@ import requests
 import json
 import csv
 
-#fpath = "/home/kijada/studia/AirQuality_bot/" # for ubuntu
-fpath = "" # for wid10 + pycharm
+fpath = "/home/kijada/studia/AirQuality_bot/" # for ubuntu
+#fpath = "" # for wid10 + pycharm
 
-fname = 'config0'   # Test
-#fname = 'config'    # normal
+#fname = 'config0'   # Test
+fname = 'config'    # normal
 
 #   CONFIG  #
 with open(fpath + fname, 'r') as fconfig:
