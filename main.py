@@ -2,11 +2,14 @@ import requests
 import json
 import csv
 
-fpath = "/home/kijada/studia/AirQuality_bot/" # for ubuntu
-#fpath = "" # for wid10 + pycharm
+#fpath = "/home/kijada/studia/AirQuality_bot/" # for ubuntu
+fpath = "" # for wid10 + pycharm
+
+fname = 'config0'   # Test
+#fname = 'config'    # normal
 
 #   CONFIG  #
-with open(fpath + "config", 'r') as fconfig:
+with open(fpath + fname, 'r') as fconfig:
     config = []
     while True:
         line = fconfig.readline()
@@ -26,7 +29,7 @@ for i in range(len(config)):
                 config[i].append(len(json.loads(aq_sensor.text)))
                 for s in range(len(json.loads(aq_sensor.text))):
                     config[i].append(int(json.loads(aq_sensor.text)[s]['id']))
-        with open(fpath+"config", 'w') as fconfig:
+        with open(fpath + fname, 'w') as fconfig:
             for i in range(len(config)):
                 for j in range(len(config[i])):
                     fconfig.write(str(config[i][j]) + '\t')
@@ -60,7 +63,7 @@ for i in range(len(config)):
     sensor = []
     for j in range(len(stations), len(config[i])):
         sensor.clear()
-        if int(config[i][j]) < 100:
+        if int(config[i][j]) < 50:
             for l in range(j+1, j+1+int(config[i][j])): sensor.append(config[i][l])
         for l in range(len(sensor)):
             aq_data = ['', '']
@@ -69,7 +72,14 @@ for i in range(len(config)):
             aq_data[0] = json.loads(aq.text)['key']
             #print(json.loads(aq.text)['values'])
             if json.loads(aq.text)['values'] == []: aq_data[1] = 'error'
-            else: aq_data[1] = json.loads(aq.text)['values'][0]['value']
+            else:
+                for k in range(len(json.loads(aq.text)['values'])):
+                    if json.loads(aq.text)['values'][k]['value'] != None:
+                        aq_data[1] = json.loads(aq.text)['values'][k]['value']
+                        break
+                    else:
+                        print('No data available ', sensor[l])
+                        aq_data[1] = 'No data'
             data.append(aq_data)
             #print(sensor[l], aq_data)
 
@@ -123,7 +133,7 @@ for i in range(len(config)):
                 fdata.write(str(data[j][1]))
                 fdata.write('\t')
             fdata.write('\n')
-    #print(data)
+    print(data)
     print('Successful reading')
 
 print('\nReading complete\n')
