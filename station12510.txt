@@ -1,0 +1,16 @@
+id_stacji	stacja	data_pomiaru	godzina_pomiaru	temperatura	predkosc_wiatru	kierunek_wiatru	wilgotnosc_wzgledna	suma_opadu	cisnienie	SO2	PM2.5	C6H6
+12510	Śnieżka	2022-01-26	0	-7.3	15	360	96.2	1	None	1.89042	6.44789	1.10448	
+id_stacji	stacja	data_pomiaru	godzina_pomiaru	temperatura	predkosc_wiatru	kierunek_wiatru	wilgotnosc_wzgledna	suma_opadu	cisnienie	SO2	PM2.5	C6H6	
+12510	Śnieżka	2022-01-26	0	-7.3	15	360	96.2	1	None	1.89042	6.44789	1.10448	
+id_stacji	stacja	data_pomiaru	godzina_pomiaru	temperatura	predkosc_wiatru	kierunek_wiatru	wilgotnosc_wzgledna	suma_opadu	cisnienie	SO2	PM2.5	C6H6	
+12510	Śnieżka	2022-01-26	0	-7.3	15	360	96.2	1	None	1.87523	6.44789	1.10675	
+id_stacji	stacja	data_pomiaru	godzina_pomiaru	temperatura	predkosc_wiatru	kierunek_wiatru	wilgotnosc_wzgledna	suma_opadu	cisnienie	SO2	PM2.5	C6H6	
+12510	Śnieżka	2022-01-26	0	-7.3	15	360	96.2	1	None	time	time	time	
+id_stacji	stacja	data_pomiaru	godzina_pomiaru	temperatura	predkosc_wiatru	kierunek_wiatru	wilgotnosc_wzgledna	suma_opadu	cisnienie	SO2	PM2.5	C6H6	
+12510	Śnieżka	2022-01-26	0	-7.3	15	360	96.2	1	None	time	time	time	
+id_stacji	stacja	data_pomiaru	godzina_pomiaru	temperatura	predkosc_wiatru	kierunek_wiatru	wilgotnosc_wzgledna	suma_opadu	cisnienie	SO2	PM2.5	C6H6	
+12510	Śnieżka	2022-01-26	0	-7.3	15	360	96.2	1	None	1.87523	6.44789	1.10675	
+id_stacji	stacja	data_pomiaru	godzina_pomiaru	temperatura	predkosc_wiatru	kierunek_wiatru	wilgotnosc_wzgledna	suma_opadu	cisnienie	SO2	PM2.5	C6H6	
+12510	Śnieżka	2022-01-26	0	-7.3	15	360	96.2	1	None	1.89042	6.44789	1.10448	
+id_stacji	stacja	data_pomiaru	godzina_pomiaru	temperatura	predkosc_wiatru	kierunek_wiatru	wilgotnosc_wzgledna	suma_opadu	cisnienie	SO2	PM2.5	C6H6	
+12510	Śnieżka	2022-01-26	0	-7.3	15	360	96.2	1	None	1.89042	6.44789	1.10448	
