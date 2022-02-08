@@ -6,7 +6,7 @@ Autor:  Kacper Kaczmarek  <br />
 
 Konfiguracja: <br />
 1.  Plik “config” <br />
-    Format danych: <stacja_IMGW>\t<stacja_GIOŚ1>\t…\t<stacja_GIOŚ>\t-1 <br />
+    Format danych: <stacja_IMGW>\t<stacja_GIOŚ>\t…\t<stacja_GIOŚ>\t-1 <br />
     Przykład: 12330	944	943	-1 <br />
     Podczas pierwszego uruchomienia skryptu automatycznie pobierze punkty pomiarowe i zapisze je do pliku “config” <br />
 
