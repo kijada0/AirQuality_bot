@@ -1,7 +1,6 @@
 # AirQuality_bot
 
 Bot napisany na potrzeby laboratorium z Ochrony Środowiska IL. <br />
-Autor:  Kacper Kaczmarek  <br />
 <br />
 Lokalizacje stacji (IMGW):<br />
 12330 - Poznań<br />
